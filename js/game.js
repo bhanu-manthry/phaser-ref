@@ -68,7 +68,7 @@ function preload() {
 }
 
 function create() {
-    game.state.start('textBoxState');
+    game.state.start('spriteAnimationState');
 
     game.forceSingleUpdate = true;
     game.renderer.renderSession.roundPixels = true;
