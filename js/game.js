@@ -9,14 +9,14 @@ game.common = (function() {
         var sprite, textObj;
 
         function _createTextBox(bgColor) {
-            var g = game.add.graphics(x, y);
+            var g = game.state.getCurrentState().add.graphics(x, y);
             g.beginFill(bgColor || 0xffffff, 1);
 
             // lineStyle(thickness, color, alpha)
             g.lineStyle(1, 0x000000, 1);
             g.drawRect(0, 0, textObj.width + 10, textObj.height);
 
-            sprite = game.add.sprite(x, y, g.generateTexture());
+            sprite = game.state.getCurrentState().add.sprite(x, y, g.generateTexture());
             sprite.anchor.set(0.5);
 
             // destroy graphics
@@ -39,12 +39,23 @@ game.common = (function() {
                 textObj.text = t;
                 sprite.destroy();
                 _createTextBox(bgColor);
-            }
+            },
+            sprite: sprite
         };
     }
 
+    function backMenuBtn() {
+        var text = game.add.text(game.world.width - 300, 50, 'Back to menu', {stroke: 'white', strokeThickness: 3});
+        text.inputEnabled = true;
+        text.events.onInputDown.add(function(t) {
+            game.state.clearCurrentState();
+            game.state.start('menuState');
+        });
+    }
+
     return {
-        textBox: textBox
+        textBox: textBox,
+        backMenuBtn: backMenuBtn
     };
 })();
 
@@ -68,7 +79,7 @@ function preload() {
 }
 
 function create() {
-    game.state.start('spriteAnimationState');
+    game.state.start('menuState');
 
     game.forceSingleUpdate = true;
     game.renderer.renderSession.roundPixels = true;

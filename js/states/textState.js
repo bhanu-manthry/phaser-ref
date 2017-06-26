@@ -7,6 +7,7 @@ states.textState.prototype = (function() {
     };
 
     var create = function() {
+        game.common.backMenuBtn();
         // change background color
         game.stage.backgroundColor = 0xffffff;
         var style = {

@@ -7,6 +7,7 @@ states.rotateState.prototype = (function() {
     };
 
     var create = function() {
+        game.common.backMenuBtn();
         game.stage.backgroundColor = 0xffffff;
         var wheel1 = game.add.sprite(120, 120, 'wheel');
         wheel1.scale.set(0.4);
@@ -30,7 +31,7 @@ states.rotateState.prototype = (function() {
         var rotate = true;
         setInterval(function() {
             if(rotate) {
-                tween3.start();                
+                tween3.start();
             } else {
                 tween3.stop();
             }

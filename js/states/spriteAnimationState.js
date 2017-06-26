@@ -8,7 +8,8 @@ states.spriteAnimationState.prototype = (function() {
     };
 
     var create = function() {
-        // game.stage.backgroundColor = 0xffffff;
+        game.common.backMenuBtn();
+        game.stage.backgroundColor = 0x000000;
         var earth = game.add.sprite(100, 100, 'earth');
         earth.animations.add('rotate');
 
