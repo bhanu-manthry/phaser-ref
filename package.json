@@ -1,0 +1,24 @@
+{
+  "name": "phaser-ref",
+  "version": "1.0.0",
+  "description": "********* Resources *********",
+  "main": "phaser.min.js",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhanumanthry/phaser-ref.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhanumanthry/phaser-ref/issues"
+  },
+  "homepage": "https://github.com/bhanumanthry/phaser-ref#readme"
+}
