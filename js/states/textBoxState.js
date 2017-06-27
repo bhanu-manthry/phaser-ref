@@ -3,20 +3,24 @@ states.textBoxState = function() {
 
 states.textBoxState.prototype = (function() {
 
-    var t, string, colors, i = 0;
+    var textBoxFluid, textBox, string, colors, i = 0;
     var preload = function() {
     };
 
     var create = function() {
         game.common.backMenuBtn();
         game.stage.backgroundColor = 0xffffff;
-        t = game.common.textBox(centerX, centerY, 'hello', 0xffffff, 'white');
+        textBoxFluid = game.common.textBoxFluid(centerX, centerY, 'hello');
+        textBox = game.common.textBox(centerX, centerY + 100, 100, 50, 'hello');
+        textBox.setText('hello', 0xff0000);
 
         string = 'this is some random text'.split(' ');
         colors = [0xAD1457, 0xc62828, 0x00695C, 0x7CB342, 0xFFA726];
 
+
+
         setInterval(function() {
-            t.setText(string[i], colors[i]);
+            textBoxFluid.setText(string[i], colors[i]);
             i++;
 
             if(i >= string.length) {

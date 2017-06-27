@@ -5,7 +5,7 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '
 });
 
 game.common = (function() {
-    function textBox(x, y, initialText) {
+    function textBoxFluid(x, y, initialText) {
         var sprite, textObj;
 
         function _createTextBox(bgColor) {
@@ -15,6 +15,45 @@ game.common = (function() {
             // lineStyle(thickness, color, alpha)
             g.lineStyle(1, 0x000000, 1);
             g.drawRect(0, 0, textObj.width + 10, textObj.height);
+
+            sprite = game.state.getCurrentState().add.sprite(x, y, g.generateTexture());
+            sprite.anchor.set(0.5);
+
+            // destroy graphics
+            g.destroy();
+
+            game.world.bringToTop(textObj);
+        };
+
+        var style = {
+            fill: 'black'
+        };
+
+        textObj = game.add.text(x, y, initialText, style);
+        textObj.anchor.set(0.5);
+
+        _createTextBox();
+
+        return {
+            setText: function(t, bgColor) {
+                textObj.text = t;
+                sprite.destroy();
+                _createTextBox(bgColor);
+            },
+            sprite: sprite
+        };
+    }
+
+    function textBox(x, y, w, h, initialText) {
+        var sprite, textObj;
+
+        function _createTextBox(bgColor) {
+            var g = game.state.getCurrentState().add.graphics(x, y);
+            g.beginFill(bgColor || 0xffffff, 1);
+
+            // lineStyle(thickness, color, alpha)
+            g.lineStyle(1, 0x000000, 1);
+            g.drawRect(0, 0, w, h);
 
             sprite = game.state.getCurrentState().add.sprite(x, y, g.generateTexture());
             sprite.anchor.set(0.5);
@@ -55,6 +94,7 @@ game.common = (function() {
 
     return {
         textBox: textBox,
+        textBoxFluid: textBoxFluid,
         backMenuBtn: backMenuBtn
     };
 })();
@@ -80,7 +120,7 @@ function preload() {
 }
 
 function create() {
-    game.state.start('pipesState');
+    game.state.start('menuState');
 
     game.forceSingleUpdate = true;
     game.renderer.renderSession.roundPixels = true;
