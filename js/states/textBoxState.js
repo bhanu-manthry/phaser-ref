@@ -14,16 +14,27 @@ states.textBoxState.prototype = (function() {
 
         string = 'this is some random text'.split(' ');
         colors = [0xAD1457, 0xc62828, 0x00695C, 0x7CB342, 0xFFA726];
+
+        setInterval(function() {
+            t.setText(string[i], colors[i]);
+            i++;
+
+            if(i >= string.length) {
+                i = 0;
+            }
+        }, 1000);
     };
+
+
 
     var update = function() {
 
-        t.setText(string[i], colors[i]);
-        i++;
-
-        if(i >= string.length) {
-            i = 0;
-        }
+        // t.setText(string[i], colors[i]);
+        // i++;
+        //
+        // if(i >= string.length) {
+        //     i = 0;
+        // }
     };
 
     return {

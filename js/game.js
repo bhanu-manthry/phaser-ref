@@ -76,10 +76,11 @@ function preload() {
     game.state.add('textBoxState', states.textBoxState);
     game.state.add('rotateState', states.rotateState);
     game.state.add('spriteAnimationState', states.spriteAnimationState);
+    game.state.add('pipesState', states.pipesState);
 }
 
 function create() {
-    game.state.start('menuState');
+    game.state.start('pipesState');
 
     game.forceSingleUpdate = true;
     game.renderer.renderSession.roundPixels = true;

@@ -3,7 +3,7 @@ states.menuState = function() {
 }
 
 states.menuState.prototype = (function() {
-    var menu = ['text', 'text box', 'rotate', 'sprite sheet animation'];
+    var menu = ['text', 'text box', 'rotate', 'sprite sheet animation', 'pipes'];
     var preload = function() {
         // all the required assets should be loaded here
     };
@@ -40,6 +40,9 @@ states.menuState.prototype = (function() {
                         break;
                     case 'sprite sheet animation':
                         this.game.state.start('spriteAnimationState');
+                        break;
+                    case 'pipes':
+                        this.game.state.start('pipesState');
                         break;
                 }
             });
