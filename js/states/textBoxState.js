@@ -19,7 +19,7 @@ states.textBoxState.prototype = (function() {
 
 
 
-        setInterval(function() {
+        var interval = setInterval(function() {
             textBoxFluid.setText(string[i], colors[i]);
             i++;
 
@@ -27,6 +27,8 @@ states.textBoxState.prototype = (function() {
                 i = 0;
             }
         }, 1000);
+
+        game.common.intervalIds.push(interval);
     };
 
 

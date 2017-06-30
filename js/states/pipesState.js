@@ -93,17 +93,20 @@ states.pipesState.prototype = (function() {
             strokeWidth: 2
         });
 
-        setTimeout(function() {
+        game.common.timeoutIds.push(
+            setTimeout(function() {
             b1.setColor(0x00ff00);
-        }, 1000);
+        }, 1000));
 
-        setTimeout(function() {
+        game.common.timeoutIds.push(
+            setTimeout(function() {
             b2.setColor(0x00ffff);
-        }, 2000);
+        }, 2000));
 
-        setTimeout(function() {
+        game.common.timeoutIds.push(
+            setTimeout(function() {
             b3.setColor(0xddff00);
-        }, 4000);
+        }, 3000));
     };
 
     return {

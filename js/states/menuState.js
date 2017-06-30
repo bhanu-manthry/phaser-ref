@@ -3,7 +3,7 @@ states.menuState = function() {
 }
 
 states.menuState.prototype = (function() {
-    var menu = ['text', 'text box', 'rotate', 'sprite sheet animation', 'pipes'];
+    var menu = ['text', 'text box', 'rotate', 'sprite sheet animation', 'pipes', 'bring to top'];
     var preload = function() {
         // all the required assets should be loaded here
     };
@@ -22,9 +22,12 @@ states.menuState.prototype = (function() {
             var menuText = this.game.add.text(centerX, yStart+=70, m, style);
             menuText.anchor.set(0.5);
             texts.push(menuText);
-            console.log(texts[i].inputEnabled = true);
+            texts[i].inputEnabled = true;
 
             texts[i].events.onInputDown.add(function(t) {
+                this.game.common.intervalIds.forEach(function(f) {
+                    clearInterval(f);
+                });
                 this.game.state.clearCurrentState();
                 style.fill = 'red';
                 t.setStyle(style);
@@ -43,6 +46,9 @@ states.menuState.prototype = (function() {
                         break;
                     case 'pipes':
                         this.game.state.start('pipesState');
+                        break;
+                    case 'bring to top':
+                        this.game.state.start('bringToTopState');
                         break;
                 }
             });

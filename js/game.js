@@ -87,6 +87,13 @@ game.common = (function() {
         var text = game.add.text(game.world.width - 300, 50, 'Back to menu', {stroke: 'white', strokeThickness: 3});
         text.inputEnabled = true;
         text.events.onInputDown.add(function(t) {
+            game.common.intervalIds.forEach(function(f) {
+                clearInterval(f);
+            });
+
+            game.common.timeoutIds.forEach(function(f) {
+                clearTimeout(f);
+            });
             game.state.clearCurrentState();
             game.state.start('menuState');
         });
@@ -95,7 +102,9 @@ game.common = (function() {
     return {
         textBox: textBox,
         textBoxFluid: textBoxFluid,
-        backMenuBtn: backMenuBtn
+        backMenuBtn: backMenuBtn,
+        intervalIds: [],
+        timeoutIds: []
     };
 })();
 
@@ -117,6 +126,7 @@ function preload() {
     game.state.add('rotateState', states.rotateState);
     game.state.add('spriteAnimationState', states.spriteAnimationState);
     game.state.add('pipesState', states.pipesState);
+    game.state.add('bringToTopState', states.bringToTopState);
 }
 
 function create() {

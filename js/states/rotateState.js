@@ -29,7 +29,7 @@ states.rotateState.prototype = (function() {
         tween3.to({ angle: 359 }, 2000, Phaser.Easing.Linear.None, false, 0, -1, false);
 
         var rotate = true;
-        setInterval(function() {
+        var interval = setInterval(function() {
             if(rotate) {
                 tween3.start();
             } else {
@@ -38,6 +38,8 @@ states.rotateState.prototype = (function() {
 
             rotate = !rotate;
         }, 2000);
+
+        game.common.intervalIds.push(interval);
     };
 
     return {
